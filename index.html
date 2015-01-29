@@ -3,11 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width ,user-scalable=no ">
+	<script src="js/Perimetro.js" type="text/javascript"></script>
 	<title>Document</title>
 </head>
 <body>
 	<div id="main">
-		<div id="dimens" aling="center">
+		<div class="dimenciones" aling="center">
 			<div id="A">
 			<h2>Dimenciones de Matriz A</h2>
 			<form name="dimA">
@@ -17,7 +18,7 @@
 				<input tipe="text" size="4">
 			</form>
 			</div>
-			<input type="button" value="Crear Matriz" onclick="#" name="crear">
+			<input type="button" value="Crear Matriz" onclick="Generar ()" name="crear">
 		</div>
 	</div>
 </body>
@@ -26,10 +27,9 @@
 		max-width:1024px;
 		margin: 0 auto;
 	}
-	#dimens{
-		
-		background-color:#FFA500
-
+	.dimenciones{
+		background-color:#FFA500;
+		display:absolute;
 	}
 </style>
 </html>
