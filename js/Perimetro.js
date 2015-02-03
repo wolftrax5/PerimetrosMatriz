@@ -112,12 +112,21 @@ function inicializar(){
 function Evaluar (){
     inicializar()
     //Aqui se ara el metodo para lo que se quiere lograr 
+
+    var puntos= new Array();
+
     //aqui solo la igualo 
     for(i=0;i<filasA;i++){
+            var punto = {x:0,y:0};
         for(j=0;j<colA;j++){
-            matrizResultante[i][j]= matrizA[i][j];
+            if ( matrizA[i][j] == 1 )
+            {   punto.x= j;
+                punto.y=j;
+                puntos.push(punto);
+                }
         }
     }
+    console.log(puntos);
 }
 function Cargar(){
 
