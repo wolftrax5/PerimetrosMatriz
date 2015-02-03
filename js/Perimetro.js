@@ -32,41 +32,42 @@ function Generar (){
 	}
 }
 function CrearFormularioMatriz (filasA,colA ){
-	var div = document.createElement("DIV");
-	var formA = document.createElement("FORM");
+	var div = document.createElement("DIV"); // dentro de este div ira el formularo para la matriz 
+	var formA = document.createElement("FORM"); // se generara un formulario para colocar las casillas
 	var A = document.createTextNode("Matriz A");
-
+     //Atributos para reconocer el div, estilos 
 	div.setAttribute("id","matrices");
 	div.setAttribute("align", "center");
     div.setAttribute("style", "width: 50%; height: 100%; float: left; background-color: 66FF66");
-  	formA.setAttribute("name","matrizA")
-  	//LLAMADO UN BOTON 
+  	//atibuto para reconocer la matrizA
+    formA.setAttribute("name","matrizA")
+  	//se genrera un boton para que calular lo que necesistes 
   	var boton = document.createElement("INPUT");
     boton.setAttribute("type", "button");
     boton.setAttribute("value", "CALCULAR");
     boton.setAttribute("name" ,"button");
-    boton.onclick= function(){Mostrar();}
+    boton.onclick= function(){Mostrar();} // se le asigna la funcion Mostrar 
         // Le mandamos al html la creacion de la tabla por un formulario con casillas para llenar 
     for(i=0;i<filasA;i++){
-	var salto = document.createElement("BR");
+	var salto = document.createElement("BR"); // se crea un br para ir saltanod las filas de las casillas en el html
     	for(j=0;j<colA;j++){
-    		var casilla = document.createElement("INPUT");
+    		var casilla = document.createElement("INPUT"); // las casillas son inputs de texto
     		casilla.setAttribute("tipe","text");
     		casilla.setAttribute("size","4");
 
     		formA.appendChild(casilla);
     	}
-    	formA.appendChild(salto);
-    }
-	var salto = document.createElement("BR");
-    div.appendChild(salto);
-    div.appendChild(A);
-    div.appendChild(formA);
-    div.appendChild(salto);
-    div.appendChild(boton);
-    //se obtiene le elemento div principal del index por su id 
+    	formA.appendChild(salto); // damos el salto en el html
+    } 
+	var salto = document.createElement("BR"); // se vuelve a crear el salto ya que quedo destruido en el for 
+    div.appendChild(salto); // se agrega el salto 
+    div.appendChild(A); // se agrega el nodo 
+    div.appendChild(formA); // se agrega el formulario
+    div.appendChild(salto); //damos otro salto 
+    div.appendChild(boton); // agregamos el boton 
+    //se obtiene el  elemento div principal del index por su id 
     var divPrincipal = document.getElementById('main');
-    divPrincipal.appendChild(div);
+    divPrincipal.appendChild(div); // agremamos todo lo  que le agregamos al div para mostrar lo en el index.html
 }
 
 function CrearFormularioResultante(filasA,colA){
@@ -75,6 +76,7 @@ function CrearFormularioResultante(filasA,colA){
     var res = document.createTextNode("Matriz Resultante");
     div.setAttribute("id","resultado");
     div.setAttribute("align","center");
+    //Esta es la matriz reusltante la cual se idetificara con el nombre matrizR
     formResultante.setAttribute("name","matrizR");
 
     for(i=0;i<filasA;i++){
@@ -123,6 +125,7 @@ function Evaluar (){
             {   punto.x= j;
                 punto.y=j;
                 puntos.push(punto);
+                matrizResultante[i][j]=matrizA[i][j];
                 }
         }
     }
@@ -130,7 +133,7 @@ function Evaluar (){
 }
 function Cargar(){
 
-    var q =0;
+    var q =0; // valirable para recorrer los elmentos del objeto
     for (i=0;i<filasA;i++){
         for(j=0;j<colA;j++){
             matrizA[i][j]= parseInt(document.matrizA.elements[q].value);
@@ -143,12 +146,15 @@ function Mostrar(){
 
     Cargar()
 
-     var q =0; 
+     var q =0; //Variable para recorrer los elemntos 
     for (var i = 0; i < matrizResultante.length; i++) {
             for (var j = 0; j < matrizResultante.length; j++) {
-                document.matrizR.elements[q].value = matrizResultante[i][j];
-                matrizResultante[i][j]=0;
-                q++;
+                if(matrizResultante[i][j]==1){ 
+                document.matrizR.elements[q].value = matrizResultante[i][j]; //se asigna el valor al text de la matriz
+                document.matrizR.elements[q].setAttribute("style","background:red; color:white"); // se resaltan las casillas que tengan un valor 
+              }
+              matrizResultante[i][j]=0; // se limpia la matris 
+                q++;//incremento para el recorrido de elmentos 
             }
     }
 }
