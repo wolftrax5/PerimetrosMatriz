@@ -46,6 +46,7 @@ function CrearFormularioMatriz (filasA,colA ){
     boton.setAttribute("type", "button");
     boton.setAttribute("value", "CALCULAR");
     boton.setAttribute("name" ,"button");
+    boton.setAttribute("class","boton");
     boton.onclick= function(){Mostrar();} // se le asigna la funcion Mostrar 
         // Le mandamos al html la creacion de la tabla por un formulario con casillas para llenar 
     for(i=0;i<filasA;i++){
