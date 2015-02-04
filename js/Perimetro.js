@@ -3,6 +3,7 @@ var matrizResultante;
 var filasA;
 var colA;
 var contador = 0;
+var DatosMatriz = {pixel:0,perimetro:0,perimetroContacto:0}; 
 //contador cuenta las veces que se accede, para que si no es la primera, se borren las capas creadas previamente.
 
 
@@ -76,7 +77,7 @@ function CrearFormularioResultante(filasA,colA){
     var res = document.createTextNode("Matriz Resultante");
     div.setAttribute("id","resultado");
     div.setAttribute("align","center");
-    //Esta es la matriz reusltante la cual se idetificara con el nombre matrizR
+    //Esta es la matriz reusltante la cual se idetificara con el nombre matrizResultante
     formResultante.setAttribute("name","matrizR");
 
     for(i=0;i<filasA;i++){
@@ -114,22 +115,43 @@ function inicializar(){
 function Evaluar (){
     inicializar()
     //Aqui se ara el metodo para lo que se quiere lograr 
-
-    var puntos= new Array();
-
-    //aqui solo la igualo 
+    // Lista de objetos de puntos 
+   
+   
+ 
     for(i=0;i<filasA;i++){
-            var punto = {x:0,y:0};
+            
         for(j=0;j<colA;j++){
             if ( matrizA[i][j] == 1 )
-            {   punto.x= j;
-                punto.y=j;
-                puntos.push(punto);
-                matrizResultante[i][j]=matrizA[i][j];
+            {    DatosMatriz.pixel ++ ;
+                if (i > 0 && matrizA[i-1][j] == 1) 
+                {
+                    DatosMatriz.perimetroContacto ++;
                 }
+                if (i < filasA-1 && matrizA[i+1][j] == 1)
+                {
+                    DatosMatriz.perimetroContacto ++;
+                }
+                if (j > 0 && matrizA[i][j-1] == 1)
+                {
+                    DatosMatriz.perimetroContacto++;
+                }
+                if (j < colA-1 && matrizA[i][j+1] == 1)
+                {
+                    DatosMatriz.perimetroContacto++;
+                }
+                
+            }
+                matrizResultante[i][j]=matrizA[i][j]; // fuera del if iguala la matriz R con la A
         }
+
     }
-    console.log(puntos);
+    DatosMatriz.perimetroContacto >>= 1; // aqui se esta desplasando un bit ala derecha 
+    DatosMatriz.Perimetro = 4*(DatosMatriz.pixel) - 2*(DatosMatriz.perimetroContacto); 
+     console.log("Perimetro de Conacto: "+DatosMatriz.perimetroContacto);
+     console.log("Numero de Pixeles: " + DatosMatriz.pixel);
+     console.log("Perimetro: "+ DatosMatriz.Perimetro); 
+   
 }
 function Cargar(){
 
@@ -163,7 +185,17 @@ function Borrar(){
     var mat =  document.getElementById("matrices");
     var padre1 = mat.parentNode;
     padre1.removeChild(mat);
+
+    var matR = document.getElementById("resultado");
+    var padre2 = matR.parentNode;
+    padre2.removeChild(matR);
     }
+
+function BorrarMresultant(){
+    var matR = document.getElementById("resultado");
+    var padre2 = matR.parentNode;
+    padre2.removeChild(matR);
+}
 
 
 
