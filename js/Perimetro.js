@@ -38,8 +38,7 @@ function CrearFormularioMatriz (filasA,colA ){
 	var A = document.createTextNode("Matriz A");
      //Atributos para reconocer el div, estilos 
 	div.setAttribute("id","matrices");
-	div.setAttribute("align", "center");
-    div.setAttribute("style", "width: 50%; height: 100%; float: left; background-color: 66FF66");
+
   	//atibuto para reconocer la matrizA
     formA.setAttribute("name","matrizA")
   	//se genrera un boton para que calular lo que necesistes 
@@ -77,7 +76,7 @@ function CrearFormularioResultante(filasA,colA){
     var formResultante = document.createElement("FORM");
     var res = document.createTextNode("Matriz Resultante");
     div.setAttribute("id","resultado");
-    div.setAttribute("align","center");
+    
     //Esta es la matriz reusltante la cual se idetificara con el nombre matrizResultante
     formResultante.setAttribute("name","matrizR");
 
