@@ -129,7 +129,16 @@ function Evaluar (){
                 }
         }
     }
+
     console.log(puntos);
+    console.log("La Distancia Manhathan: "+ Dmanhatan(puntos));
+    console.log("La Distancia Eclidiana: "+ DEuclidiana(puntos));
+}
+function Dmanhatan(puntos){
+    return (Math.abs(puntos[0].x-puntos[1].x))+(Math.abs(puntos[0].y-puntos[1].y));
+}
+function DEuclidiana(puntos){
+    return  Math.sqrt((Math.pow(puntos[0].x-puntos[1].x,2)+Math.pow(puntos[0].y-puntos[1].y,2))/2);
 }
 function Cargar(){
 
